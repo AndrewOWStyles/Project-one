@@ -1,12 +1,22 @@
 
+
 #princeColor {
   background-color: rgb(248, 140, 8);
   width: 500px;
   height: 600px;
 }
 
+
+.blue{
+    background-color: blue;
+    height: 400px;
+    width: 300px;
+}
+
 .teal {
     width: 200px;
     height: 200px;
     background-color: teal
+
 }
+
