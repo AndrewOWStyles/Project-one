@@ -2769,7 +2769,7 @@ let test2 = {
   __CLASS__: "Adzuna::API::Response::JobSearchResults",
 };
 
-for (let i = 0; i < test2.results.length; i++) {
-  const element = test2.results[i].company.display_name;
-  console.log(element);
-}
+// for (let i = 0; i < test2.results.length; i++) {
+//   const element = test2.results[i].company.display_name;
+//   console.log(element);
+// }
