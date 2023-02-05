@@ -12,48 +12,50 @@
 </head>
 
 <body>
-
-
+<!-- header -->
   <header>
     <div class=" row blue">
+      <!-- search input -->
       <form <div class="job-search">
         <div class="">
           <label for="what" class="">
             What?
           </label>
-          <input type="text" name="q" id="imgText" spellcheck="false"
+          <input type="text" name="q" id="search-text" spellcheck="false"
             class="what"
             placeholder="job, company, title" autocomplete="off" />
         </div>
-        <div class="">
-          <label class="where" for="where">
-            Where?
-          </label>
-          <input type="text" name="w" id="where" spellcheck="false" data-loc_id="72034"
-            class="where"
-            placeholder="city, county or postcode" autocomplete="off" />
-        </div>
-        <button type="button" id="imgButton" class="btn btn-secondary">Search</button>
+        <!-- search button -->
+        <button type="button" id="search-button" class="btn btn-secondary">Search</button>
     </div>
     </form>
     </div>
   </header>
+  <!-- main content area -->
   <main class="content">
     <div class="row">
-      <div class="col-8" id="princeColor"></div>
+      <!-- job search reesults -->
+      <div class="col-8" id="princeColor">
+        <div id="jobArea">
+        
+        </div>
+      </div>
+      <!-- image search results -->
       <div id="imgDiv" class="col-4 teal">
         <div id="imageArea">
           <div id="images"></div>
         </div>
       </div>
     </div>
-
-
-
   </main>
+  <!-- footer -->
   <footer class="footer"></footer>
-  <script src="./assets/script.js"></script>
-  <script src="./test.js"></script>
+
+  <!-- Moment.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+  <!-- <script src="./assets/script.js"></script> -->
+  <script src="../script.js"></script>
 </body>
 
 </html>
