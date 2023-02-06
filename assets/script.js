@@ -1,35 +1,73 @@
-const searchBox = document.getElementById("imgText")
+const searchBox = document.getElementById("imgText");
 const url = "https://pixabay.com/api/?key=";
 const apiKey = "33299072-c6d09cbcb29cf3d5fcf4e9d15&q=";
+const imageType = "&image_type=photo";
 let searchTerm = searchBox.value;
 const imageDiv = document.querySelector("#imageArea");
-let images = document.querySelector("#images")
+let images = document.querySelector("#images");
+let index = 0;
+let imageTimeout;
 
-
-document.querySelector("#imgButton").addEventListener("click", function (event) {
-    event.preventDefault();
-    searchTerm = searchBox.value
-    console.log(searchTerm);
-    fetchImage();
-})
-
-function fetchImage() {
-    let queryURL = url + apiKey + searchTerm
-    fetch(queryURL)
-    .then(response => response.json())
-    .then(data => {
-        console.log(queryURL)
-        console.log(data)
-        console.log(data.hits[0].largeImageURL)
-        imageDiv.innerHTML = ""
-        images.innerHTML = `
-        <div>
-        <img class="img" src="${data.hits[0].largeImageURL}">
-        </div>
-        `
-        imageDiv.append(images)
-    })
+// function linked to HTML button. on click take input value in searchTerm and calls fetchImage().
+function imgSearch() {
+  searchTerm = searchBox.value;
+  index = 0;
+  fetchImage();
+// carousel buttons load into the page as display: none, this targets the buttons through a loop and sets the to visible.
+  let caraBtn = document.getElementsByClassName("carouselBtn");
+  for (var i = 0; i < caraBtn.length; i++) {
+    caraBtn[i].style.display = "inline-block";
+  }
+  
 }
+
+// image fetch functions, makes a request to the api by combining the 4 variables to make the url and passes the response to the createImage function.
+function fetchImage() {
+  let queryURL = url + apiKey + searchTerm + imageType;
+  fetch(queryURL)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(queryURL);
+      console.log(data);
+      createImage(data.hits);
+    });
+}
+
+// uses data from the promise to display the image from the api. 
+function createImage(hits) {
+  images.innerHTML = "";
+  let img = document.createElement("img");
+// first image is the first one from the returned array.
+  img.src = hits[index].webformatURL;
+// img class added to the generated image and images appended to the imageDiv.
+  img.classList.add("img");
+  images.appendChild(img);
+  imageDiv.append(images);
+  
+// button to go to the next item in an array. clears timeout using imageTimeout.
+  document.querySelector("#next").addEventListener("click", function () {
+    clearTimeout(imageTimeout);
+// if the index is equal to the last item in the array it resets the array to the first item, if not it goes to the next item.
+    if (index === hits.length - 1) {
+      index = 0;
+    } else {
+      index++;
+    }
+    imageTimeout = setTimeout(() => createImage(hits), 500);
+  });
+  }
+
+// button to go to a previous item in an array. clears timeout using imageTimeout.
+  document.querySelector("#prev").addEventListener("click", function () {
+    clearTimeout(imageTimeout);
+// if the index is 0 it sets the current item to the last of the array, if not it goes to the previous item.
+    if (index === 0) {
+      index = hits.length - 1;
+    } else {
+      index--;
+    }
+    imageTimeout = setTimeout(() => createImage(hits), 500);
+  });
 
 
 

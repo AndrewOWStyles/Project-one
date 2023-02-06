@@ -16,12 +16,16 @@
         </div>
 
 
-        <div id="imgDiv" class="teal">
-            <input type="text" id="imgText">
-            <button class="button" id="imgButton">click me</button>
-            <div id="imageArea">
-              <div id="images"></div>
-            </div>
+        <div id="imgDiv" class="imgContainer">
+          <div>
+            <input type="text" id="imgText" class="imgInput">
+            <button class="btn imgSearcBtn" id="imgBtn" onclick="imgSearch()">click me</button>
+          </div>
+          <div id="imageArea" class="imageArea">
+            <button id="prev" class="carouselBtn previous"><</button>
+            <button id="next" class="carouselBtn next">></button>
+            <div id="images" class="fetchedImages"></div>
+          </div>
         </div>
 
 
