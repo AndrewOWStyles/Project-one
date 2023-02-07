@@ -1,36 +1,70 @@
-#princeColor {
-  background-color: rgb(248, 140, 8);
-  /* width: 500px;
-  height: 600px; */
+
+.content{
+  display: flex;
+  justify-content: center;
 }
 
-
 .blue{
-    background-color: blue;
-    display: flex;
+  background-color: blue;
+  display: flex;
 }
 
 .job-search{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
-.teal {
-    /* width: 200px;
-    height: 200px; */
-    background-color: teal
-
-}
-
-.button {
+.btn {
   width: 100px;
-  height: 50px;
+  height: 40px;
+}
+
+.filter {
+  align-self: center;
+}
+
+#princeColor {
+  background-color: rgb(248, 140, 8);
+  width: 50%;
+  height: 50%;
+}
+
+.imgContainer {
+  /* position: relative; */
+  width: 50%;
+  height: 50%;
+  background-color: teal;  
+}
+
+.carouselBtn {
+  display: none;
+  position: absolute;
+  top: 50%;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.prev {
+  left: 50%;
+}
+
+.next {
+  left: 93%
+}
+
+.fetchedImages {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 700px;
+  width: 700px;
 }
 
 .img {
-  height: 100%;
-  width: 100%;
+  height: fit-content;
+  width: fit-content;
 }
-
-
