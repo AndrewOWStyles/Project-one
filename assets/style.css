@@ -7,36 +7,30 @@ html, body {
   display: flex;
   justify-content: center;
 }
-
 .blue{
   background-color: blue;
   display: flex;
 }
-
 .job-search{
 display: flex;
 justify-content: center;
 align-items: center;
 }
-
 .btn {
   width: 100px;
   height: 40px;
-  background-color: #333;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
 }
-
 .filter {
   align-self: center;
 }
-
 #princeColor {
   background-color: rgb(248, 140, 8);
   width: 50%;
   height: 50%;
+  display: flex;
+  flex-wrap: wrap;
 }
+
 
 #imgDiv {
   visibility: hidden;
