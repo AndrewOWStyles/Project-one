@@ -78,25 +78,25 @@ prevBtn.addEventListener("click", function () {
 });
 
 //Display company name from the first object of the search results
-let searchQuerryUrl = "https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=36e59f90&app_key=70ad6f78f2c44754114265af2caed74f";
-let myJobResult = fetch(searchQuerryUrl)
-  .then((response) => response.json())
-  .then(jobResult => {
-    // console.log(jobResult.results[0])
+// let searchQuerryUrl = "https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=36e59f90&app_key=70ad6f78f2c44754114265af2caed74f";
+// let myJobResult = fetch(searchQuerryUrl)
+//   .then((response) => response.json())
+//   .then(jobResult => {
+//     // console.log(jobResult.results[0])
 
-    let companyName = jobResult.results[0].company.display_name
-    // console.log(companyName)
-    let { display_name } = jobResult.results[0].location;
-    // console.log(display_name)
-
-
-    let resultElement = document.createElement("div");
-    resultElement.textContent = JSON.stringify(jobResult.results[0].company.display_name);
-
-    document.getElementById("princeColor").append(resultElement);
+//     let companyName = jobResult.results[0].company.display_name
+//     // console.log(companyName)
+//     let { display_name } = jobResult.results[0].location;
+//     // console.log(display_name)
 
 
-  })
+//     let resultElement = document.createElement("div");
+//     resultElement.textContent = JSON.stringify(jobResult.results[0].company.display_name);
+
+//     document.getElementById("princeColor").append(resultElement);
+
+
+//   })
 
 //Funtion to search the api for jobs
 function fetchResults() {
@@ -132,6 +132,12 @@ function fetchResults() {
       const searchResults = jobResult.results;
       (searchResults);
 
+
+        let htmlString="";
+
+
+
+
       //Retrieve the required properties for display
       for (let i = 0; i < searchResults.length; i++) {
         const element = searchResults[i];
@@ -165,25 +171,33 @@ function fetchResults() {
 
         //Use this area to control how the job results are displayed on the webpage
         //New div element to hold each result
-        let resultElement = document.createElement("div");
+        // let resultElement = document.createElement("div");
         //job-search class added to new div
-        resultElement.className = "job-search";
+        // resultElement.className = "job-search";
         //Job search result properties are placed in paragraphs 
-        resultElement.innerHTML =
-          `<p>${title} ${label} ${display_name}</p>
-          <p>${contract_time} ${contract_type}</p>
-          <p>£${salary_min}</p> 
-          <p>${area}</p>
-          <p>${description}</p>`
-
+        //   <p>${title} ${label} ${display_name}</p>
+        //   <p>${contract_time} ${contract_type}</p>
+        //   <p>£${salary_min}</p> 
+        //   <p>${area}</p>
+        //   <p>${description}</p>
+        
+        htmlString += `<div  class="card border-dark mb-3 job-cards" style="width:25%; margin-left: 5px;" >
+                <div class="card-header">${title}</div>
+                <div class="card-body">
+                  <h5 class="card-title">${display_name}</h5>
+                  <p class="card-text">${description}.</p>
+                </div>
+              </div>`
+        
         //Append the newly created divs with the job search results into the princeColor area 
-        jobsArea.append(resultElement);
-
-        // }
-
-
-      }
-    })
+        // jobsArea.append(resultElement);
+        
+        // } 
+        
+        
+    }
+    jobsArea.innerHTML = htmlString;
+})
 };
 
 
@@ -209,7 +223,7 @@ filterBtns.addEventListener("click", (event) => {
 
 // Function to reset search criteria
 function clearSearch() {
-  jobsArea.innerHTML = "";
+//   jobsArea.innerHTML = "";
   imageDiv.innerHTML = "";
 }
 

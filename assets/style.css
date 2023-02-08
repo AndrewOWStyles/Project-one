@@ -28,6 +28,9 @@ align-items: center;
   background-color: rgb(248, 140, 8);
   width: 50%;
   height: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  
 }
 
 .imgContainer {
@@ -67,4 +70,11 @@ align-items: center;
 .img {
   height: fit-content;
   width: fit-content;
+}
+
+#job-cards{
+    
+    background-color: antiquewhite;
+    display: flex;
+    flex-wrap: wrap;
 }
