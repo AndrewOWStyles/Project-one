@@ -13,14 +13,12 @@
     />
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
-
   <body>
     <!-- header -->
     <header>
       <div class=" row blue">
         <!-- search input -->
-        <form> 
-        <div class="job-search">
+        <form ><div class="job-search">
           <div class="">
             <label for="what" class="">
               What?
@@ -30,21 +28,48 @@
               placeholder="job, company, title" autocomplete="off" />
           </div>
           <!-- search button -->
-          <button type="button" id="search-button" class="btn btn-secondary" onclick="imgSearch()">Search</button>
-        </div>
+          <button type="button" id="search-button" class="btn btn-secondary">Search</button>
+      </div>
       </form>
       <div id="filter">
         <button type="button" data-filter="all" class="filter btn">Show All</button>
+        <button type="button" data-filter="job" class="filter btn">Job Title</button>
+        <button type="button" data-filter="category" class="filter btn">Category</button>
+        <button type="button" data-filter="company" class="filter btn">Company</button>
         <button type="button" data-filter="salary" class="filter btn">Salary</button>
         <button type="button" data-filter="location" class="filter btn">Location</button>
         <button type="button" data-filter="contract" class="filter btn">Contract</button>
       </div>
       </div>
+      </header>
+      </header>
+      </header>
     </header>
-
     <main class="">
       <div class="row content">
-        <div class="col-6" id="princeColor"></div>
+        <div class="col-6" id="princeColor">
+            <div id="job-cards" class="card border-dark mb-3" style="width:30%; margin-left: 5px;" >
+                <div class="card-header">Job Title</div>
+                <div class="card-body">
+                  <h5 class="card-title">Dark card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+            <div id="job-cards" class="card border-dark mb-3"style="width:30%; margin-left: 5px;" >
+                <div class="card-header">Job Title</div>
+                <div class="card-body">
+                  <h5 class="card-title">Dark card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+            <div id="job-cards" class="card border-dark mb-3"style="width:30% ; margin-left: 5px;"  >
+                <div class="card-header">Job Title</div>
+                <div class="card-body">
+                  <h5 class="card-title">Dark card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+        </div>
         
         
         <div id="imgDiv" class="imgContainer col-6">

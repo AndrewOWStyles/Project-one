@@ -87,38 +87,28 @@ function fetchImage() {
 }
   
   //Display company name from the first object of the search results
-  let searchQuerryUrl = "https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=36e59f90&app_key=70ad6f78f2c44754114265af2caed74f";
-  let myJobResult = fetch(searchQuerryUrl)
-  .then((response) => response.json())
-  .then(jobResult => {
-    // console.log(jobResult.results[0])
-    
-    let companyName = jobResult.results[0].company.display_name
-    // console.log(companyName)
-    let { display_name } = jobResult.results[0].location;
-    // console.log(display_name)
-    
-    
-    let resultElement = document.createElement("div");
-    resultElement.textContent = JSON.stringify(jobResult.results[0].company.display_name);
-    
-    document.getElementById("princeColor").append(resultElement);
-
-  })
-
+// let searchQuerryUrl = "https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=36e59f90&app_key=70ad6f78f2c44754114265af2caed74f";
+// let myJobResult = fetch(searchQuerryUrl)
+//   .then((response) => response.json())
+//   .then(jobResult => {
+//     // console.log(jobResult.results[0])
+//     let companyName = jobResult.results[0].company.display_name
+//     // console.log(companyName)
+//     let { display_name } = jobResult.results[0].location;
+//     // console.log(display_name)
+//     let resultElement = document.createElement("div");
+//     resultElement.textContent = JSON.stringify(jobResult.results[0].company.display_name);
+//     document.getElementById("princeColor").append(resultElement);
+//   })
 //Funtion to search the api for jobs
 function fetchResults() {
-
   //Function to generate random page numbers
   function randomPageNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min)
   }
-
   //Variable for using page number generator
   let pageNumber = randomPageNumber(1, 10);
-
   // console.log(pageNumber);
-
   //Build the url for the job search api
   let searchQuerryUrl = "https://api.adzuna.com/v1/api/jobs/gb/search/"
     + pageNumber
@@ -127,18 +117,15 @@ function fetchResults() {
     + "&results_per_page=10"
     + "&what="
     + searchTerm
-
-  //Fetch the job search results 
+  //Fetch the job search results
   fetch(searchQuerryUrl)
     .then((response) => response.json())
     .then(jobResult => {
-
       // console.log(jobResult.results)
-
-      //Loop through the results array to retrieve the information for display 
+      //Loop through the results array to retrieve the information for display
       const searchResults = jobResult.results;
       (searchResults);
-
+        let htmlString="";
       //Retrieve the required properties for display
       for (let i = 0; i < searchResults.length; i++) {
         const element = searchResults[i];
@@ -146,9 +133,7 @@ function fetchResults() {
         const { display_name } = element.company;
         const { contract_time, contract_type, title, salary_min, salary_max, description, created } = element;
         const { area } = element.location;
-
         // console.log(title, label, display_name, contract_time, contract_type, salary_min, salary_max, description, created, area);
-
         //Object to be used for sorting the array prior to display
         // let obj = {
         //   title,
@@ -159,78 +144,72 @@ function fetchResults() {
         //   description,
         //   contract_time,
         //   contract_type
-
         // }
         // // console.log(obj)
-
         // displayCardsArr.push(obj)
-
         //For loop to be used for sorting
         // for (let i = 0; i < displayCardsArr.length; i++) {
         //   console.log(displayCardsArr[i])
-
         //Use this area to control how the job results are displayed on the webpage
         //New div element to hold each result
-        let resultElement = document.createElement("div");
+        // let resultElement = document.createElement("div");
         //job-search class added to new div
-        resultElement.className = "job-search";
-        //Job search result properties are placed in paragraphs 
-        resultElement.innerHTML =
-          `<p>${title} ${label} ${display_name}</p>
-          <p>${contract_time} ${contract_type}</p>
-          <p>£${salary_min}</p> 
-          <p>${area}</p>
-          <p>${description}</p>`
-
-        //Append the newly created divs with the job search results into the princeColor area 
-        jobsArea.append(resultElement);
-
+        // resultElement.className = "job-search";
+        //Job search result properties are placed in paragraphs
+        //   <p>${title} ${label} ${display_name}</p>
+        //   <p>${contract_time} ${contract_type}</p>
+        //   <p>£${salary_min}</p>
+        //   <p>${area}</p>
+        //   <p>${description}</p>
+        htmlString += `<div  class="card border-dark mb-3 job-cards" style="width:25%; margin-left: 5px;" >
+                <div class="card-header">${title}</div>
+                <div class="card-body">
+                  <h5 class="card-title">${display_name}</h5>
+                  <p class="card-text">${description}.</p>
+                </div>
+              </div>`
+        //Append the newly created divs with the job search results into the princeColor area
+        // jobsArea.append(resultElement);
         // }
-
-      }
-    })
+    }
+    jobsArea.innerHTML = htmlString;
+})
 };
-
 //
 // console.log(displayCardsArr);
 // let result = test.results
 let jobSeach = document.querySelectorAll(".job-search")
 let filterBtns = document.querySelector("#filter")
-
 //Event listener for sort buttons
 filterBtns.addEventListener("click", (event) => {
   event.preventDefault();
-
   console.log(event.target)
   if (event.target.textContent === "Salary") {
     console.log("yes")
     let cardsArr = document.querySelectorAll(".job-search")
     console.log(cardsArr)
     // dump out the innerhtml
-
   }
 })
-
 // Function to reset search criteria
 function clearSearch() {
-  jobsArea.innerHTML = "";
+//   jobsArea.innerHTML = "";
+//   imageDiv.innerHTML = "";
 }
-
 //Create an event listener for the search button
 searchBtn.addEventListener("click", function (event) {
   event.preventDefault();
   //Clear the webpage
   clearSearch()
-  // Retrieve the text from the job search input 
+  // Retrieve the text from the job search input
   search = searchInput.value
   //Run the image search function
   imgSearch();
   //Retrieve job search results
   fetchResults();
   //Clear the user input on submit
-  searchInput.value = '';
+  // searchInput.value = '';
 })
-
 //Create an event listener for the enter key
 searchInput.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
@@ -238,7 +217,6 @@ searchInput.addEventListener("keypress", function (event) {
     clearSearch()
     //Uses the job search button to submit user input
     searchBtn.click();
-    searchInput.value = '';
+    // searchInput.value = '';
   }
-
 })

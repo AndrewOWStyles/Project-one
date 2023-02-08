@@ -116,3 +116,9 @@ left: 53%;
 .next {
   left: 94%
 }
+
+#job-cards{
+  background-color: antiquewhite;
+  display: flex;
+  flex-wrap: wrap;
+}
