@@ -5,36 +5,67 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./assets/style.css">
-</head>
-<body>
-    <main class="content">
-    
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
 
-        <div id="princeColor">
-            
-        </div>
-
-
-        <div id="imgDiv" class="imgContainer">
-          <div>
-            <input type="text" id="imgText" class="imgInput">
-            <button class="btn imgSearcBtn" id="imgBtn" onclick="imgSearch()">click me</button>
+  <body>
+    <!-- header -->
+    <header>
+      <div class=" row blue">
+        <!-- search input -->
+        <form> 
+        <div class="job-search">
+          <div class="">
+            <label for="what" class="">
+              What?
+            </label>
+            <input type="text" name="q" id="search-text" spellcheck="false"
+              class="what"
+              placeholder="job, company, title" autocomplete="off" />
           </div>
-          <div id="imageArea" class="imageArea">
-            <button id="prev" class="carouselBtn previous"><</button>
+          <!-- search button -->
+          <button type="button" id="search-button" class="btn btn-secondary" onclick="imgSearch()">Search</button>
+        </div>
+      </form>
+      <div id="filter">
+        <button type="button" data-filter="all" class="filter btn">Show All</button>
+        <button type="button" data-filter="salary" class="filter btn">Salary</button>
+        <button type="button" data-filter="location" class="filter btn">Location</button>
+        <button type="button" data-filter="contract" class="filter btn">Contract</button>
+      </div>
+      </div>
+    </header>
+
+    <main class="">
+      <div class="row content">
+        <div class="col-6" id="princeColor"></div>
+        
+        
+        <div id="imgDiv" class="imgContainer col-6">
+          <div id="imageArea" class="imgArea">
+            <input id="imgInput" class="imgInput" type="text" spellcheck="true">
+            <button id="imgBtn" class="imgBtn btn" onclick="secondImgSearch()">try a new search</button>
             <button id="next" class="carouselBtn next">></button>
+            <button id="prev" class="carouselBtn previous"><</button>
             <div id="images" class="fetchedImages"></div>
           </div>
         </div>
+      </div>
+      </main>
 
-
-        
-        <div class="blue"></div>
-
-    </main>
     <footer class="footer"></footer>
-    <script src="./assets/script.js"></script>
-    <script src="./test.js"></script>
+
+  <!-- Moment.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+  <!-- javascript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <script src="./assets/script.js"></script>
   </body>
 </html>

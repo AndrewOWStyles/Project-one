@@ -1,58 +1,118 @@
-#princeColor {
-  background-color: rgb(248, 140, 8);
-  width: 100px;
-  height: 100px;
+html, body {
+  margin: 0;
+  width: auto;
 }
 
+.content{
+  display: flex;
+  justify-content: center;
+}
 
 .blue{
-    background-color: blue;
-    height: 400px;
-    width: 300px;
+  background-color: blue;
+  display: flex;
 }
 
-.imgContainer {
-  position: relative;
-  width: 760px;
-  height: 750px;
-  background-color: teal;
-  
-
+.job-search{
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 .btn {
   width: 100px;
-  height: 50px;
-}
-
-.carouselBtn {
-  display: none;
-  position: absolute;
-  top: 50%;
-  padding: 10px 20px;
+  height: 40px;
   background-color: #333;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.prev {
-  left: 50%;
+.filter {
+  align-self: center;
 }
 
-.next {
-  left: 93%
+#princeColor {
+  background-color: rgb(248, 140, 8);
+  width: 50%;
+  height: 50%;
+}
+
+#imgDiv {
+  visibility: hidden;
+}
+
+.imgContainer {
+  background-color: teal;  
+}
+
+.imgArea {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.imgInput {
+  margin-top: 20px;
+  position: absolute;
+  display: flex;
+  height: 2rem;
+  width: 15rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.imgBtn {
+  margin-top: 3.75rem;
+  width: 8rem;
+  height: 4rem;
+  display: flex;
+  position: absolute;
+}
+
+.imgBtn:hover {
+  background-color: #4e4c4c;
+  color: #ffffff;
 }
 
 .fetchedImages {
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 700px;
-  width: 700px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.fetchedImages img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.carouselBtn {
+  visibility: hidden;
+  position: absolute;
+  padding: 10px 20px;
+  top: 50%;
+  width: 4rem;
+  height: 3rem;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.carouselBtn:hover {
+background-color: #4e4c4c;
 }
 
 .img {
-  height: fit-content;
-  width: fit-content;
+height: fit-content;
+width: fit-content;
+padding-top: 10.938rem;
+}
+.previous{
+left: 53%;
+}
+
+.next {
+  left: 94%
 }
