@@ -28,11 +28,12 @@ align-items: center;
   cursor: pointer;
 }
 
-.filter {
+.history {
   align-self: center;
 }
 
 #princeColor {
+    visibility: hidden;
   background-color: rgb(248, 140, 8);
   width: 50%;
   height: 50%;
@@ -127,4 +128,14 @@ align-items: center;
     background-color: antiquewhite;
     display: flex;
     flex-wrap: wrap;
+    height: 800px;
+}
+
+.card-header{
+    text-align: center;
+}
+
+.card-body{
+  height: fit-content;
+  width: fit-content;
 }
