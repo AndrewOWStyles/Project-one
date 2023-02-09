@@ -106,7 +106,7 @@ function fetchImage() {
   })
 
 //Funtion to search the api for jobs
-function fetchResults() {
+function fetchResults(searchTerm) {
 
   //Function to generate random page numbers
   function randomPageNumber(min, max) {
@@ -197,18 +197,18 @@ let jobSeach = document.querySelectorAll(".job-search")
 let filterBtns = document.querySelector("#filter")
 
 //Event listener for sort buttons
-filterBtns.addEventListener("click", (event) => {
-  event.preventDefault();
+// filterBtns.addEventListener("click", (event) => {
+//   event.preventDefault();
 
-  console.log(event.target)
-  if (event.target.textContent === "Salary") {
-    console.log("yes")
-    let cardsArr = document.querySelectorAll(".job-search")
-    console.log(cardsArr)
-    // dump out the innerhtml
+//   console.log(event.target)
+//   if (event.target.textContent === "Salary") {
+//     console.log("yes")
+//     let cardsArr = document.querySelectorAll(".job-search")
+//     console.log(cardsArr)
+//     // dump out the innerhtml
 
-  }
-})
+//   }
+// })
 
 // Function to reset search criteria
 function clearSearch() {
@@ -223,11 +223,17 @@ searchBtn.addEventListener("click", function (event) {
   // Retrieve the text from the job search input 
   search = searchInput.value
   //Run the image search function
-  imgSearch();
+  imgSearch(searchTerm);
   //Retrieve job search results
-  fetchResults();
+  fetchResults(searchTerm);
   //Clear the user input on submit
   searchInput.value = '';
+  if (!recentSearches.includes(search)){
+    recentSearches.push(search)
+  }
+  createButton();
+  savedRecent();
+
 })
 
 //Create an event listener for the enter key
@@ -241,3 +247,39 @@ searchInput.addEventListener("keypress", function (event) {
   }
 
 })
+
+function savedRecent() {
+  localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
+  console.log(localStorage);
+}
+
+let recentSearches = [];
+let recentButtons = document.getElementById("history");
+function createButton() {
+  recentButtons.innerHTML = "";
+  for (let i = 0; i < recentSearches.length; i++) {
+    const recent = recentSearches[i];
+    let recentButton = document.createElement("button");
+    recentButton.setAttribute("class", "btn")
+    recentButton.innerHTML = recent;
+    recentButtons.prepend(recentButton)
+  }
+}
+
+startUp();
+function startUp() {
+  let savedRecent = JSON.parse(localStorage.getItem("recentSearches"));
+    if (savedRecent) {
+        recentSearches = savedRecent;
+    }
+    createButton(recentSearches);
+}
+
+recentButtons.addEventListener("click", function (event) {
+  if (event.target.matches("button")) {
+    let searchTerm = event.target.textContent;
+    console.log(searchTerm);
+    fetchResults(searchTerm);
+    imgSearch(searchTerm);
+  }
+});
