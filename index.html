@@ -19,7 +19,8 @@
     <header>
       <div class=" row blue">
         <!-- search input -->
-        <form <div class="job-search">
+        <form> 
+        <div class="job-search">
           <div class="">
             <label for="what" class="">
               What?
@@ -29,8 +30,8 @@
               placeholder="job, company, title" autocomplete="off" />
           </div>
           <!-- search button -->
-          <button type="button" id="search-button" class="btn btn-secondary">Search</button>
-      </div>
+          <button type="button" id="search-button" class="btn btn-secondary" onclick="imgSearch()">Search</button>
+        </div>
       </form>
       <div id="filter">
         <button type="button" data-filter="all" class="filter btn">Show All</button>
@@ -47,22 +48,19 @@
     <main class="">
       <div class="row content">
         <div class="col-6" id="princeColor"></div>
-
+        
+        
         <div id="imgDiv" class="imgContainer col-6">
-          <div>
-            <input type="text" id="imgText" class="imgInput" />
-            <button class="btn imgSearcBtn" id="imgBtn" onclick="imgSearch()">
-              click me
-            </button>
-          </div>
-          <div id="imageArea" class="imageArea">
-            <button id="prev" class="carouselBtn previous"><</button>
+          <div id="imageArea" class="imgArea">
+            <input id="imgInput" class="imgInput" type="text" spellcheck="true">
+            <button id="imgBtn" class="imgBtn btn" onclick="secondImgSearch()">try a new search</button>
             <button id="next" class="carouselBtn next">></button>
+            <button id="prev" class="carouselBtn previous"><</button>
             <div id="images" class="fetchedImages"></div>
           </div>
         </div>
       </div>
-    </main>
+      </main>
 
     <footer class="footer"></footer>
 
