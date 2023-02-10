@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>JobsImage Hunt || jobs and images search</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -16,63 +16,66 @@
 
   <body>
     <!-- header -->
-    <header>
-      <div class=" row blue">
-        <!-- search input -->
-        <form> 
-        <div class="job-search">
-          <div class="">
-            <label for="what" class="">
-              What?
-            </label>
-            <input type="text" name="q" id="search-text" spellcheck="false"
-              class="what"
-              placeholder="job, company, title" autocomplete="off" />
-          </div>
-          <!-- search button -->
-          <button type="button" id="search-button" class="btn btn-secondary" onclick="imgSearch()">Search</button>
-        </div>
-      </form>
-      <div id="history">
-
-      </div>
-      </div>
-
-      </header>
-      </header>
-      </header>
+    <header class="row blue">
+      <nav class="navbar bg-body-tertiary">
+        <section class="container-fluid jobs-search">
+          <img src="./assets/logo.png" alt="logo" />
+          <form class="d-flex" role="search">
+            <label for="what" class="label"> What? </label>
+            <input
+              class="form-control me-2 what"
+              id="search-text"
+              type="search"
+              placeholder="job, company, title"
+              aria-label="Search"
+            />
+            <button
+              class="btn btn-outline-success"
+              id="search-button"
+              type="submit"
+              onclick="imgSearch()"
+            >
+              Search
+            </button>
+          </form>
+        </section>
+      </nav>
+      <!-- search history -->
+      <section id="history"></section>
     </header>
 
-    <main class="">
-      <div class="row content">
-        <div class="col-6" id="princeColor">
-            
-              
-        </div>
+    <!-- main content -->
+    <main class="row content">
+      <!-- job results area -->
+      <section class="col-6" id="princeColor"></section>
+      <!-- image results area -->
+      <section id="imgDiv" class="imgContainer col-6">
+        <section id="imageArea" class="imgArea">
+          <input id="imgInput" class="imgInput" type="text" spellcheck="true" />
+          <button id="imgBtn" class="imgBtn btn" onclick="secondImgSearch()">
+            try a new image search
+          </button>
+          <button id="next" class="carouselBtn next">></button>
+          <button id="prev" class="carouselBtn previous"><</button>
+          <section id="images" class="fetchedImages"></section>
+        </section>
+      </section>
+    </main>
 
-              
-        
-        <div id="imgDiv" class="imgContainer col-6">
-          <div id="imageArea" class="imgArea">
-            <input id="imgInput" class="imgInput" type="text" spellcheck="true">
-            <button id="imgBtn" class="imgBtn btn" onclick="secondImgSearch()">try a new search</button>
-            <button id="next" class="carouselBtn next">></button>
-            <button id="prev" class="carouselBtn previous"><</button>
-            <div id="images" class="fetchedImages">
-              
-            </div>
-          </div>
-        </div>
-      </div>
-      </main>
+    <!-- footer -->
+    <footer class="footer">
+      <p>&copy; 2023 JobsImage Hunt</p>
+    </footer>
 
-    <footer class="footer"></footer>
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 
-  <!-- Moment.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-
-  <!-- javascript -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-  <script src="./assets/script.js"></script>
+    <!-- javascript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./assets/script.js"></script>
   </body>
 </html>

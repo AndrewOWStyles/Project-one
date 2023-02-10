@@ -27,14 +27,14 @@ function imgSearch() {
   for (var i = 0; i < caraBtn.length; i++) {
     caraBtn[i].style.visibility = "visible";
   }
-}
+};
 
 function secondImgSearch() {
   searchTerm = imgInput.value;
   index = 0;
   fetchImage();
   imgInput.value = "";
-}
+};
 
 // image fetch functions, makes a request to the api by combining the 4 variables to make the url and passes the response to the createImage function.
 function fetchImage() {
@@ -47,7 +47,7 @@ function fetchImage() {
       hits = data.hits;
       createImage(hits);
     });
-}
+};
 
 // uses data from the promise to display the image from the api.
 function createImage(hits) {
@@ -95,25 +95,7 @@ function createImage(hits) {
     }
     imageTimeout = setTimeout(() => createImage(hits), 500);
   });
-}
-//Display company name from the first object of the search results
-// let searchQuerryUrl = "https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=36e59f90&app_key=70ad6f78f2c44754114265af2caed74f";
-// let myJobResult = fetch(searchQuerryUrl)
-//   .then((response) => response.json())
-//   .then(jobResult => {
-//     // console.log(jobResult.results[0])
-
-//     let companyName = jobResult.results[0].company.display_name
-//     // console.log(companyName)
-//     let { display_name } = jobResult.results[0].location;
-//     // console.log(display_name)
-
-//     let resultElement = document.createElement("div");
-//     resultElement.textContent = JSON.stringify(jobResult.results[0].company.display_name);
-
-//     document.getElementById("princeColor").append(resultElement);
-
-//   })
+};
 
 //Funtion to search the api for jobs
 function fetchResults(searchTerm) {
@@ -191,18 +173,7 @@ function fetchResults() {
         // for (let i = 0; i < displayCardsArr.length; i++) {
         //   console.log(displayCardsArr[i])
 
-        //Use this area to control how the job results are displayed on the webpage
-        //New div element to hold each result
-        // let resultElement = document.createElement("div");
-        //job-search class added to new div
-        // resultElement.className = "job-search";
-        //Job search result properties are placed in paragraphs
-        //   <p>${title} ${label} ${display_name}</p>
-        //   <p>${contract_time} ${contract_type}</p>
-        //   <p>£${salary_min}</p>
-        //   <p>${area}</p>
-        //   <p>${description}</p>
-
+        //Display job results are on the webpage
         htmlString += `<div  class="card border-dark mb-3 job-cards" >
                 <div class="card-header"><h4>${title}</h4></div>
                 <div class="card-body">
@@ -211,10 +182,7 @@ function fetchResults() {
                   </div>
               </div>`;
 
-        //Append the newly created divs with the job search results into the princeColor area
-        // jobsArea.append(resultElement);
         console.log(description);
-        // }
       }
       jobsArea.innerHTML = htmlString;
     });
@@ -262,7 +230,7 @@ searchBtn.addEventListener("click", function (event) {
   //Clear the user input on submit
 
   searchInput.value = '';
-  if (!recentSearches.includes(search)){
+  if (!recentSearches.includes(search)) {
     recentSearches.push(search)
   }
   createButton();
@@ -270,12 +238,12 @@ searchBtn.addEventListener("click", function (event) {
 
 })
 
-  searchInput.value = "";
+// clear searchInput
+searchInput.value = "";
 
-  jobsArea.style.visibility = "visible";
-});
+jobsArea.style.visibility = "visible";
 
-//Create an event listener for the enter key
+//Event listener for the enter key
 searchInput.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
     event.preventDefault();
@@ -284,15 +252,20 @@ searchInput.addEventListener("keypress", function (event) {
     searchBtn.click();
     searchInput.value = "";
   }
-})
+});
 
+// function to store search input in local storage
 function savedRecent() {
   localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
   console.log(localStorage);
-}
+};
 
+// Empty array for search inputs
 let recentSearches = [];
+// variable for history section 
 let recentButtons = document.getElementById("history");
+
+// Function to create buttons from search input
 function createButton() {
   recentButtons.innerHTML = "";
   for (let i = 0; i < recentSearches.length; i++) {
@@ -302,17 +275,25 @@ function createButton() {
     recentButton.innerHTML = recent;
     recentButtons.prepend(recentButton)
   }
-}
+};
 
+// Retrieve data from local Storage
 startUp();
 function startUp() {
   let savedRecent = JSON.parse(localStorage.getItem("recentSearches"));
-    if (savedRecent) {
-        recentSearches = savedRecent;
-    }
-    createButton(recentSearches);
-}
+  if (savedRecent) {
+    recentSearches = savedRecent;
+  }
+  createButton(recentSearches);
+};
 
+// Clear local storage and history on page refresh
+window.onbeforeunload = function (e) {
+  localStorage.clear();
+  recentButtons.innerHTML = "";
+};
+
+// Event listener for search history buttons
 recentButtons.addEventListener("click", function (event) {
   if (event.target.matches("button")) {
     let searchTerm = event.target.textContent;
@@ -320,5 +301,4 @@ recentButtons.addEventListener("click", function (event) {
     fetchResults(searchTerm);
     imgSearch(searchTerm);
   }
-});
 });
