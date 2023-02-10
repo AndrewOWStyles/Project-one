@@ -116,7 +116,11 @@ function createImage(hits) {
 //   })
 
 //Funtion to search the api for jobs
+function fetchResults(searchTerm) {
+
+}
 function fetchResults() {
+
   //Function to generate random page numbers
   function randomPageNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
@@ -226,14 +230,16 @@ let filterBtns = document.querySelector("#filter");
 // filterBtns.addEventListener("click", (event) => {
 //   event.preventDefault();
 
-//   console.log(event.target);
+//   console.log(event.target)
 //   if (event.target.textContent === "Salary") {
-//     console.log("yes");
-//     let cardsArr = document.querySelectorAll(".job-search");
-//     console.log(cardsArr);
+//     console.log("yes")
+//     let cardsArr = document.querySelectorAll(".job-search")
+//     console.log(cardsArr)
 //     // dump out the innerhtml
+
 //   }
-// });
+// })
+
 
 // Function to reset search criteria
 function clearSearch() {
@@ -250,10 +256,20 @@ searchBtn.addEventListener("click", function (event) {
   // Retrieve the text from the job search input
   search = searchInput.value;
   //Run the image search function
-  imgSearch();
+  imgSearch(searchTerm);
   //Retrieve job search results
-  fetchResults();
+  fetchResults(searchTerm);
   //Clear the user input on submit
+
+  searchInput.value = '';
+  if (!recentSearches.includes(search)){
+    recentSearches.push(search)
+  }
+  createButton();
+  savedRecent();
+
+})
+
   searchInput.value = "";
 
   jobsArea.style.visibility = "visible";
@@ -268,4 +284,41 @@ searchInput.addEventListener("keypress", function (event) {
     searchBtn.click();
     searchInput.value = "";
   }
+})
+
+function savedRecent() {
+  localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
+  console.log(localStorage);
+}
+
+let recentSearches = [];
+let recentButtons = document.getElementById("history");
+function createButton() {
+  recentButtons.innerHTML = "";
+  for (let i = 0; i < recentSearches.length; i++) {
+    const recent = recentSearches[i];
+    let recentButton = document.createElement("button");
+    recentButton.setAttribute("class", "btn")
+    recentButton.innerHTML = recent;
+    recentButtons.prepend(recentButton)
+  }
+}
+
+startUp();
+function startUp() {
+  let savedRecent = JSON.parse(localStorage.getItem("recentSearches"));
+    if (savedRecent) {
+        recentSearches = savedRecent;
+    }
+    createButton(recentSearches);
+}
+
+recentButtons.addEventListener("click", function (event) {
+  if (event.target.matches("button")) {
+    let searchTerm = event.target.textContent;
+    console.log(searchTerm);
+    fetchResults(searchTerm);
+    imgSearch(searchTerm);
+  }
+});
 });
