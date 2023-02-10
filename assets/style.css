@@ -11,6 +11,11 @@ html, body {
   justify-content: space-around;
 }
 
+.reset-button{
+  width: 400px;
+  visibility: hidden;
+}
+
 /* search question  */
 .label{
 margin-right: 15px;
@@ -41,7 +46,7 @@ font-size: 25px;
 
 /* job results section */
 #princeColor {
-    visibility: hidden;
+  visibility: hidden;
   background-color: #e8a14a;
   width: 50%;
   height: 50%;
@@ -54,6 +59,8 @@ font-size: 25px;
 #job-cards{    
   background-color: antiquewhite;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   height: 800px;
 }
@@ -152,6 +159,6 @@ width: fit-content;
 /* footer  */
 footer{
   text-align: center;
-  padding: 30px;
+  padding: 10px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
