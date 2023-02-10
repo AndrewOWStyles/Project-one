@@ -101,6 +101,8 @@ function createImage(hits) {
 function fetchResults(searchTerm) {
 
 }
+
+
 function fetchResults() {
 
   //Function to generate random page numbers
@@ -188,7 +190,6 @@ function fetchResults() {
     });
 }
 
-//
 // console.log(displayCardsArr);
 // let result = test.results
 let jobSeach = document.querySelectorAll(".job-search");
@@ -287,12 +288,6 @@ function startUp() {
   createButton(recentSearches);
 };
 
-// Clear local storage and history on page refresh
-window.onbeforeunload = function (e) {
-  localStorage.clear();
-  recentButtons.innerHTML = "";
-};
-
 // Event listener for search history buttons
 recentButtons.addEventListener("click", function (event) {
   if (event.target.matches("button")) {
@@ -302,3 +297,19 @@ recentButtons.addEventListener("click", function (event) {
     imgSearch(searchTerm);
   }
 });
+
+// Clear local storage and history on page refresh
+function resetSearch() {
+  localStorage.clear();
+  recentButtons.innerHTML = "";
+}
+
+//Event listener for resetting the 
+let searchResetBtn = document.getElementById("reset-button")
+searchResetBtn.addEventListener("click", function (event) {
+  console.log(event.target.matches("button"));
+  if (event.target.matches("button")) {
+    resetSearch()
+  }
+});
+
